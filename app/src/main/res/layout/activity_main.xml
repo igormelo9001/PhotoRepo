@@ -26,8 +26,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <include layout="@layout/content_main" />
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="match_parent"
+        android:layout_height="598dp"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

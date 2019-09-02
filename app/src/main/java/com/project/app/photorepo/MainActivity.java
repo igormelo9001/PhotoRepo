@@ -1,5 +1,9 @@
 package com.project.app.photorepo;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -11,8 +15,18 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ImageView imagePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +35,56 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        initViews();
+
+        Intent intent = getIntent();
+        if(intent == null){
+            Toast.makeText(MainActivity.this, "Tire uma foto", Toast.LENGTH_SHORT).show();
+        }else {
+            Bitmap bitmap = intent.getParcelableExtra("bitmapImage");
+            createImageFromBitmap(bitmap);
+
+            imagePhoto.setImageBitmap(bitmap);
+        }
+
+
+        imagePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent cameraIntent = new Intent(MainActivity.this, CameraActivity.class);
+                startActivity(cameraIntent);
             }
         });
+    }
+
+    private void initViews() {
+
+        imagePhoto = findViewById(R.id.photo);
+
+    }
+
+    public String createImageFromBitmap(Bitmap bitmap) {
+        String fileName = "myImage";//no .png or .jpg needed
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
+            fo.write(bytes.toByteArray());
+            // remember close file output
+            fo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            fileName = null;
+        }
+        return fileName;
     }
 
     @Override
@@ -52,4 +108,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
