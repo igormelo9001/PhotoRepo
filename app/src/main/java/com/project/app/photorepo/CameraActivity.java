@@ -16,11 +16,13 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.project.app.photorepo.helper.ConfiguracaoFirebase;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -61,9 +63,13 @@ public class CameraActivity extends AppCompatActivity {
                         image.compress(Bitmap.CompressFormat.JPEG, 70, baos);
                         final byte[] dadosImagem = baos.toByteArray();
 
+                        DatabaseReference ref = ConfiguracaoFirebase.getFirebase();
+                        String key = ref.push().getKey();
+
                         final StorageReference imagemRef = storageReference
                                 .child("imagens")
-                                .child("fotos" + "jpeg");
+                                .child("fotos" )
+                                .child( key + "jpeg");
 
                         UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
                         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -99,7 +105,7 @@ public class CameraActivity extends AppCompatActivity {
                 Foto foto = new Foto();
                 foto.setUrlImagem(urlImagemSelecionada);
                 foto.setDescricao(descriccao);
-                foto.salvar();
+                foto.salvar(foto);
             }
         });
 

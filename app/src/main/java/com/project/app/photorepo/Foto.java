@@ -3,6 +3,9 @@ package com.project.app.photorepo;
 import com.google.firebase.database.DatabaseReference;
 import com.project.app.photorepo.helper.ConfiguracaoFirebase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Foto {
 
     private String urlImagem;
@@ -19,13 +22,12 @@ public class Foto {
     public Foto() {
     }
 
-    public void salvar(){
+    public void salvar(Foto foto){
 
         DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebase();
-        DatabaseReference empresaRef = firebaseRef.child("fotos");
-
-        empresaRef.setValue(this);
-
+        String uniqueKey = firebaseRef.child("fotos").push().getKey();
+        DatabaseReference uniqueKeyRef = firebaseRef.child("fotos").child(uniqueKey);
+        uniqueKeyRef.setValue(foto);
     }
 
     public String getUrlImagem() {
