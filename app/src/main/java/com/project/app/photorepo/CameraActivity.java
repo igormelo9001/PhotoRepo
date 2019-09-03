@@ -22,6 +22,7 @@ import com.google.firebase.storage.UploadTask;
 import com.project.app.photorepo.helper.ConfiguracaoFirebase;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Date;
 
 public class CameraActivity extends AppCompatActivity {
@@ -117,6 +118,7 @@ public class CameraActivity extends AppCompatActivity {
         savePhoto = findViewById(R.id.savePhoto);
         imageCamera = findViewById(R.id.imageCamera);
         editDescricao = findViewById(R.id.editDescricao);
+        imageCamera.setImageResource(R.drawable.perfil);
 
     }
 
@@ -129,5 +131,4 @@ public class CameraActivity extends AppCompatActivity {
         }
 
     }
-
 }

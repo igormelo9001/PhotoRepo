@@ -33,11 +33,15 @@ public class AdapterFoto extends RecyclerView.Adapter<AdapterFoto.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         Foto foto = fotos.get(i);
-        holder.descricao.setText("R$ " + foto.getDescricao());
+        holder.descricao.setText(foto.getDescricao());
 
         //Carregar imagem
         String urlImagem = foto.getUrlImagem();
-        Picasso.get().load( urlImagem ).into( holder.fotoImagem );
+        if(urlImagem != null){
+            Picasso.get().load( urlImagem ).into( holder.fotoImagem );
+        }else {
+            holder.fotoImagem.setImageResource(R.drawable.perfil);
+        }
 
     }
 
