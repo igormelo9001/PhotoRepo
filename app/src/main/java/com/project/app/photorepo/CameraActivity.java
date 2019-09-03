@@ -34,6 +34,7 @@ public class CameraActivity extends AppCompatActivity {
     private Bitmap image;
     private StorageReference storageReference;
     private EditText editDescricao;
+    private Uri url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,11 @@ public class CameraActivity extends AppCompatActivity {
                                 while(!uriTask.isSuccessful());
                                 Uri url = uriTask.getResult();
                                 urlImagemSelecionada = url.toString();
+                                String descriccao = editDescricao.getText().toString();
+                                Foto foto = new Foto();
+                                foto.setUrlImagem(urlImagemSelecionada);
+                                foto.setDescricao(descriccao);
+                                foto.salvar(foto);
                                 Toast.makeText(CameraActivity.this,
                                         "Sucesso ao fazer upload da imagem",
                                         Toast.LENGTH_SHORT
@@ -102,11 +108,7 @@ public class CameraActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                String descriccao = editDescricao.getText().toString();
-                Foto foto = new Foto();
-                foto.setUrlImagem(urlImagemSelecionada);
-                foto.setDescricao(descriccao);
-                foto.salvar(foto);
+
             }
         });
 

@@ -26,7 +26,7 @@ public class DescricaoFotoActivity extends AppCompatActivity {
 
         firebaseRef = ConfiguracaoFirebase.getFirebase();
 
-        imagem = findViewById(R.id.imagePhotoDescricao);
+        imagem = findViewById(R.id.imageViewFoto);
         textDescricao = findViewById(R.id.textDescricao);
 
         recuperarFotoDescricao();
