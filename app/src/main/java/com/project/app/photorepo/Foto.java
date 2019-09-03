@@ -3,9 +3,6 @@ package com.project.app.photorepo;
 import com.google.firebase.database.DatabaseReference;
 import com.project.app.photorepo.helper.ConfiguracaoFirebase;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Foto {
 
     private String urlImagem;
