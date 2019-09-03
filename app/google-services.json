@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "515775171198",
+    "firebase_url": "https://databasestorage-48aad.firebaseio.com",
+    "project_id": "databasestorage-48aad",
+    "storage_bucket": "databasestorage-48aad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515775171198:android:62cc05ebfaebf3f9",
+        "android_client_info": {
+          "package_name": "com.project.app.photorepo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515775171198-lpmua5b332pdn8taq51mnrlkf8m6l6qu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGZ0f37iBKDHH9FMpfe5utGFozuP_r5Qw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515775171198-lpmua5b332pdn8taq51mnrlkf8m6l6qu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
