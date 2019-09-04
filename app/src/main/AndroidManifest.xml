@@ -4,13 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/photorepo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/photorepo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".DescricaoFotoActivity"></activity>
-        <activity android:name=".CameraActivity" />
+        <activity android:name=".CameraActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Nova Foto"
+            />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

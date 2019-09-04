@@ -36,4 +36,10 @@
 
     <include layout="@layout/content_main" />
 
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="match_parent"
+        android:layout_height="598dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -34,6 +34,7 @@ public class AdapterFoto extends RecyclerView.Adapter<AdapterFoto.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         Foto foto = fotos.get(i);
         holder.descricao.setText(foto.getDescricao());
+        holder.data.setText(foto.getDate());
 
         //Carregar imagem
         String urlImagem = foto.getUrlImagem();
@@ -53,13 +54,14 @@ public class AdapterFoto extends RecyclerView.Adapter<AdapterFoto.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView fotoImagem;
-        TextView descricao;
+        TextView descricao, data;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             descricao = itemView.findViewById(R.id.textDescricao);
             fotoImagem = itemView.findViewById(R.id.imageFoto);
+            data = itemView.findViewById(R.id.textViewDate);
         }
     }
 }

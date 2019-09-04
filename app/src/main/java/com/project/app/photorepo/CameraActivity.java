@@ -2,10 +2,14 @@ package com.project.app.photorepo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +26,8 @@ import com.google.firebase.storage.UploadTask;
 import com.project.app.photorepo.helper.ConfiguracaoFirebase;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CameraActivity extends AppCompatActivity {
@@ -34,12 +39,13 @@ public class CameraActivity extends AppCompatActivity {
     private Bitmap image;
     private StorageReference storageReference;
     private EditText editDescricao;
-    private Uri url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         storageReference = ConfiguracaoFirebase.getFirebaseStorage();
 
@@ -95,6 +101,8 @@ public class CameraActivity extends AppCompatActivity {
                                 Foto foto = new Foto();
                                 foto.setUrlImagem(urlImagemSelecionada);
                                 foto.setDescricao(descriccao);
+                                String dataFormatada = "Sincronizada em " + getDateTime();
+                                foto.setDate(dataFormatada);
                                 foto.salvar(foto);
                                 Toast.makeText(CameraActivity.this,
                                         "Sucesso ao fazer upload da imagem",
@@ -112,6 +120,12 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private String getDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     private void initViews() {
@@ -132,5 +146,14 @@ public class CameraActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public void onBackPressed(){
+
+        startActivity(new Intent(CameraActivity.this, MainActivity.class));
+        finish(); // Finaliza a Activity atual
+
+        return;
     }
 }
